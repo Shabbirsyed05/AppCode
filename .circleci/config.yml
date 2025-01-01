@@ -12,9 +12,9 @@ jobs:
           command: |
             version="build-$CIRCLE_BUILD_NUM"
             echo $version
-            docker build -t piyushsachdeva/todo-app:$version .
+            docker build -t shabbirsyed103/todo-app:$version .
             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-            docker push piyushsachdeva/todo-app:$version
+            docker push shabbirsyed103/todo-app:$version
 
   Update_manifest:
     docker:
@@ -27,9 +27,9 @@ jobs:
           command: |
             TAG=$CIRCLE_BUILD_NUM
             ((TAG--))
-            git clone https://github.com/piyushsachdeva/kube_manifest.git
-            git config --global user.email "piyush.sachdeva055@gmail.com"
-            git config --global user.name "piyushsachdeva"
+            git clone https://github.com/shabbirsyed05/kube_manifest.git
+            git config --global user.email "shabbirsyed085@gmail.com"
+            git config --global user.name "shabbirsyed"
             pwd
             cd kube_manifest
             pwd
