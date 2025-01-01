@@ -1,0 +1,96 @@
+Create a user k8s -> admin access -> create access key and secret key
+
+vscode =>
+aws configure
+git clone https://github.com/Shabbirsyed05/10weeksofcloudops-week4-tf.git
+cd 10weeksofcloudops-week4-tf
+
+create s3 bucket (bucket-new)with versioning as enabled.(as per terraform code -> backend.tf)
+dynamodb-table -> name (new-dynamo) , partition key (LockID)
+
+alias tf=terraform
+terraform init
+terraform plan
+terraform plan | grep "will be created"
+terraform apply --auto-approve
+
+aws -> eks -> cluster (to-do) -> Resources(check the resources)
+aws -> VPC -> to-do-app (vpc) will be created
+
+export REGION=us-east-1
+export CLUSTER_NAME=ToDo-app
+aws eks update-kubconfig --region $REGION --name $CLUSTER_NAME
+kubectl get pods
+kubectl get pods -n =kube-system
+kubectl get nodes
+
+circle ci ->
+
+new repo =>
+git init
+git add .
+git commit -m "fist"
+git remote remove origin
+git remote add origin url
+git branch -M main
+git push origin main
+
+login ci from google -> select repository and project
+
+Docker_hub -> create repository -> todo-app
+Circle CI -> projects -> Appcode -> 3 dots -> project settings ->
+Environmental variables -> DOCKER_USERNAME(shabbisyed103)
+Environmental variables -> DOCKER_PASSWORD()
+Environmental variables -> GITHUB_PERSONAL_TOKEN()
+
+VSCODE =>
+ls -lrt
+cd ../
+mkdir AppCode
+cd AppCode
+ls -lrt
+git clone url
+ls -lrt
+cd AppCode
+rm -rf .circleci/
+ls -lrt
+git init
+git remote add origin url
+git remote remove origin
+git remote add origin url
+git add .
+git status
+git branch -M main
+git push origin main
+git push origin main --force
+
+In Circle ci -> it will be run the build again due to change in githib
+Docker hub -> u can see 1 image has be pushed here
+
+CD Part now :
+kubectl apply -n argocd -f https://raw.githubusecontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get pods -n=argocd
+
+kubectl port-forward svc/argocd-server 8080:443 -n argocd
+localhost:8080 (chrome)
+
+kubectl get secrets -n=argocd
+kubectl get secret argocd-initial-admin-secret -n argocd -o yaml (copy password)
+echo above_password | base64 --decode
+
+localhost:8080 (chrome) (admin , above password)
+
+cat <<EOF>> argo-manifest1.yaml
+
+kubectl apply -f argo-manifest.yaml
+kubectl get pods -n=myapp (got error)
+kubectl port-forward svc/argocd-server 8080:443 -n argocd
+
+kubectl get pods -n=myapp 
+argocd webpage (it will fail because in github . build number is specified. we need to modify it) (https://github.com/Shabbirsyed05/kube_manifest/blob/main/manifest/deployment.yaml)
+
+make some changes in appcode repo for re-triggering circle ci and argo cd
+
+
+
+
